@@ -12,7 +12,7 @@ class Home extends Component {
         <TimeWidget />
         <Search />
         {this.props.searchResults ? (
-          <Results resultsOf={this.props.videoResults} />
+          <Results resultsOf={this.props.searchResults} />
         ) : null}
         <h1>Saved videos</h1>
         {this.props.savedVideos ? (
@@ -28,7 +28,6 @@ class Home extends Component {
 const mapStateToProps = (state) => {
   return {
     searchResults: state.vid.searchResults,
-    videoResults: state.vid.searchResults,
     savedVideos: state.vid.savedVideos,
   };
 };

@@ -1,4 +1,6 @@
-const firebaseConfig = {
+import firebase from 'firebase';
+
+export const firebaseConfig = {
   apiKey: 'AIzaSyAnIFErHpfkWPj5PXsNng0WNejny7FMyVw',
   authDomain: 'ph-assessment-backend.firebaseapp.com',
   databaseURL: 'https://ph-assessment-backend.firebaseio.com',
@@ -9,4 +11,6 @@ const firebaseConfig = {
   measurementId: 'G-ZM86R9B2FX',
 };
 
-export default firebaseConfig;
+export const fire = firebase.initializeApp(firebaseConfig);
+
+export const provider = new firebase.auth.GoogleAuthProvider();

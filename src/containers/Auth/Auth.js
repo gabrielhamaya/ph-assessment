@@ -11,7 +11,7 @@ class Auth extends Component {
   render() {
     return (
       <button type="button" onClick={this.loginHandler}>
-        Login with Google
+        Login with Google!
       </button>
     );
   }

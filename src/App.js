@@ -4,7 +4,13 @@ import './App.css';
 import Auth from './containers/Auth/Auth';
 import Home from './containers/Home/Home';
 
+import * as actions from './store/actions';
+
 class App extends Component {
+  componentDidMount() {
+    this.props.onSignUp();
+  }
+
   render() {
     return (
       <div className="App">
@@ -16,8 +22,14 @@ class App extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    isAuthenticated: state.auth.LoggedIn,
+    isAuthenticated: state.auth.user,
   };
 };
 
-export default connect(mapStateToProps)(App);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onSignUp: () => dispatch(actions.authCheckState()),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

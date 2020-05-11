@@ -1,5 +1,5 @@
 import firebase from 'firebase';
-import firebaseConfig from '../../modules/firebaseConfig';
+import { fire, provider } from '../../modules/firebaseConfig';
 
 import * as actionTypes from './actionTypes';
 
@@ -16,33 +16,35 @@ export const authFail = (error) => {
   };
 };
 
-export const authSuccess = (name, accessTk) => {
+export const authSuccess = (user) => {
   return {
     type: actionTypes.AUTH_SUCCESS,
-    name,
-    accessTk,
+    user,
   };
 };
 
 export const googleSignIn = () => {
   return (dispatch) => {
     dispatch(authStart());
-    firebase.initializeApp(firebaseConfig);
-    const provider = new firebase.auth.GoogleAuthProvider();
-    firebase
+    fire
       .auth()
       .signInWithPopup(provider)
       .then((res) => {
         console.log(res);
-        dispatch(
-          authSuccess(
-            res.additionalUserInfo.profile.name,
-            res.credential.accessToken
-          )
-        );
+        dispatch(authSuccess(res.user));
       })
       .catch((err) => {
-        dispatch(authFail(err));
+        dispatch(authFail(err.message));
       });
+  };
+};
+
+export const authCheckState = () => {
+  return (dispatch) => {
+    firebase.auth().onIdTokenChanged((user) => {
+      if (user) {
+        dispatch(authSuccess(user));
+      }
+    });
   };
 };

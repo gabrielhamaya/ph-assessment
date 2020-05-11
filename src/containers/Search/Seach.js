@@ -12,11 +12,7 @@ class Search extends Component {
   searchHandler = (event) => {
     event.preventDefault();
 
-    this.props.onSearch(
-      this.props.apiKey,
-      this.props.authToken,
-      this.state.query
-    );
+    this.props.onSearch(this.props.apiKey, this.state.query);
     console.log(this.state.query);
   };
 
@@ -39,15 +35,13 @@ class Search extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    authToken: state.auth.accessToken,
     apiKey: state.vid.apiKey,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onSearch: (apiKey, accessToken, query) =>
-      dispatch(actions.seachVideo(apiKey, accessToken, query)),
+    onSearch: (apiKey, query) => dispatch(actions.seachVideo(apiKey, query)),
   };
 };
 

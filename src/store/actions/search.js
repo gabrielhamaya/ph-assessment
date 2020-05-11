@@ -14,28 +14,41 @@ export const searchFail = (error) => {
   };
 };
 
-export const searchSuccess = (videosResults) => {
+export const searchSuccess = (videosResults, query, resultsPerPage) => {
   return {
     type: actionTypes.SEARCH_SUCCESS,
     videosResults,
+    query,
+    resultsPerPage,
   };
 };
 
-export const seachVideo = (apiKey, accessToken, query) => {
+export const seachVideo = (apiKey, query) => {
   return (dispatch) => {
     dispatch(searchStart());
     axios
-      .get(
-        `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${query}&key=${apiKey}`,
-        {
-          Authorization: `Bearer ${accessToken}`,
-          Accept: 'application/json',
-        }
+      .get(`https://www.googleapis.com/youtube/v3/search`, {
+        params: {
+          part: 'snippet',
+          q: query,
+          key: apiKey,
+          type: 'video',
+          pageToken: undefined,
+          prevPageToken: undefined,
+          maxResults: 10,
+        },
+      })
+      .then((res) =>
+        dispatch(
+          searchSuccess(res.data.items, query, res.data.pageInfo),
+          console.log(res)
+        )
       )
-      .then((res) => dispatch(searchSuccess(res.data.items)))
       .catch((err) => dispatch(searchFail(err)));
   };
 };
+
+export const nextPage = () => {};
 
 export const playVideo = (videoID) => {
   return {

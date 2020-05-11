@@ -2,10 +2,8 @@ import * as actionTypes from '../actions/actionTypes';
 import updateObject from '../../modules/updateObject';
 
 const initialState = {
-  LoggedIn: null,
-  usersName: null,
+  user: null,
   error: null,
-  accessToken: null,
 };
 
 const authStart = (state) => {
@@ -14,14 +12,12 @@ const authStart = (state) => {
 
 const authSuccess = (state, action) => {
   return updateObject(state, {
-    usersName: action.name,
-    accessToken: action.accessTk,
-    LoggedIn: true,
+    user: action.user,
   });
 };
 
 const authFail = (state, action) => {
-  return updateObject(state, { error: action.error, LoggedIn: false });
+  return updateObject(state, { error: action.error, user: null });
 };
 
 const reducer = (state = initialState, action) => {

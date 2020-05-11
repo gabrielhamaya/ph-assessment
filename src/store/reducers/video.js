@@ -1,17 +1,21 @@
 import * as actionTypes from '../actions/actionTypes';
 import updateObject from '../../modules/updateObject';
-import firebaseConfig from '../../modules/firebaseConfig';
+import { firebaseConfig } from '../../modules/firebaseConfig';
 
 const initialState = {
   apiKey: firebaseConfig.apiKey,
   searchResults: null,
   error: null,
   videoId: null,
+  query: null,
+  nextPage: null,
+  prevPage: null,
+  resultsPerPage: null,
   savedVideos: [],
 };
 
 const searchStart = (state) => {
-  return updateObject(state, { searchResults: null, error: null });
+  return updateObject(state, { searchResults: null, error: null, query: null });
 };
 
 const searchFail = (state, action) => {
@@ -19,7 +23,11 @@ const searchFail = (state, action) => {
 };
 
 const searchSuccess = (state, action) => {
-  return updateObject(state, { searchResults: action.videosResults });
+  return updateObject(state, {
+    searchResults: action.videosResults,
+    query: action.query,
+    resultsPerPage: action.resultsPerPage,
+  });
 };
 
 const playVideo = (state, action) => {
