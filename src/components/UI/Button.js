@@ -1,7 +1,8 @@
 import React from 'react';
+import './Button.css';
 
 const button = (props) => (
-  <button type="button" onClick={props.clicked}>
+  <button className="Save" type="button" onClick={props.clicked}>
     {props.children}
   </button>
 );

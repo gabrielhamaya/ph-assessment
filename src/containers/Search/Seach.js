@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../../store/actions/index';
-import Video from '../../components/Video/Video';
 
 class Search extends Component {
   constructor(props) {
@@ -26,8 +25,6 @@ class Search extends Component {
       <form onSubmit={this.searchHandler}>
         <input type="text" placeholder="Search..." onChange={this.onChange} />
         <button type="submit">Go!</button>
-        <br />
-        <Video />
       </form>
     );
   }

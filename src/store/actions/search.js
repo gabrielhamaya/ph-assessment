@@ -14,12 +14,11 @@ export const searchFail = (error) => {
   };
 };
 
-export const searchSuccess = (videosResults, query, resultsPerPage) => {
+export const searchSuccess = (searchData, query) => {
   return {
     type: actionTypes.SEARCH_SUCCESS,
-    videosResults,
+    searchData,
     query,
-    resultsPerPage,
   };
 };
 
@@ -35,15 +34,10 @@ export const seachVideo = (apiKey, query) => {
           type: 'video',
           pageToken: undefined,
           prevPageToken: undefined,
-          maxResults: 10,
+          maxResults: 20,
         },
       })
-      .then((res) =>
-        dispatch(
-          searchSuccess(res.data.items, query, res.data.pageInfo),
-          console.log(res)
-        )
-      )
+      .then((res) => dispatch(searchSuccess(res.data, query), console.log(res)))
       .catch((err) => dispatch(searchFail(err)));
   };
 };

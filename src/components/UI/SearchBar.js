@@ -1,9 +1,10 @@
 import React from 'react';
+import './SearchBar.css';
 
 const searchBar = (props) => {
   return (
     <React.Fragment>
-      <input type="text" placeholder="Search..." />
+      <input className="Bar" type="text" placeholder="Search..." />
       <button type="button" onClick={props.clicked}>
         Go!
       </button>

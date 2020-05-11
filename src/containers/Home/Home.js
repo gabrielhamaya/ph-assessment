@@ -3,31 +3,30 @@ import { connect } from 'react-redux';
 import TimeWidget from '../../components/TimeWidget/TimeWidget';
 import Search from '../Search/Seach';
 import Results from '../../components/Results/Results';
+import Video from '../../components/Video/Video';
+import './Home.css';
 
 class Home extends Component {
   render() {
     return (
-      <React.Fragment>
+      <div className="Home">
         <h1>Home</h1>
-        <TimeWidget />
+        <TimeWidget className="Time" />
         <Search />
+        <Video />
         {this.props.searchResults ? (
-          <Results resultsOf={this.props.searchResults} />
+          <Results resultsOf={this.props.searchResults.items} showSaved />
         ) : null}
         <h1>Saved videos</h1>
-        {this.props.savedVideos ? (
-          <Results resultsOf={this.props.savedVideos} />
-        ) : (
-          <p>No saved videos</p>
-        )}
-      </React.Fragment>
+        <Results resultsOf={this.props.savedVideos} />
+      </div>
     );
   }
 }
 
 const mapStateToProps = (state) => {
   return {
-    searchResults: state.vid.searchResults,
+    searchResults: state.vid.searchData,
     savedVideos: state.vid.savedVideos,
   };
 };

@@ -1,0 +1,27 @@
+.background-button-banner {
+  background-image: url('../../assets/YT.jpg');
+  background-size: 100%;
+  margin-top: 70px;
+  height: 90vh;
+}
+
+.Auth {
+  background-color: #e01b0d;
+  border-radius: 42px;
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;
+  font-family: Arial;
+  font-size: 17px;
+  padding: 14px 76px;
+  margin-top: 5%;
+  text-decoration: none;
+}
+
+.Auth:hover {
+  background-color: #d42c2c;
+}
+.Auth:active {
+  position: relative;
+  top: 1px;
+}

@@ -16,17 +16,12 @@ class Results extends Component {
           clicked={this.props.onPlay}
           save={this.props.onSave}
           videoData={video}
+          showSavedButton={this.props.showSaved}
         />
       );
     });
   }
 }
-
-const mapStateToProps = (state) => {
-  return {
-    videoResults: state.vid.searchResults,
-  };
-};
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -35,4 +30,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Results);
+export default connect(null, mapDispatchToProps)(Results);

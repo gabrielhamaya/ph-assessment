@@ -2,6 +2,40 @@
   padding: 1rem;
   border-radius: 5px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
-  background-color: #fff;
+  background-color: rgba(255, 255, 255, 0.932);
   margin: 50px, 50px;
+  text-align: justify;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 10px;
+}
+
+img {
+  height: 150px;
+}
+
+span {
+  background-color: #0000;
+}
+
+.Save {
+  background-color: #e01b0d;
+  border-radius: 42px;
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;
+  font-family: Arial;
+  font-size: 17px;
+  padding: 14px 76px;
+  margin-top: 5%;
+  text-decoration: none;
+  text-align: right;
+}
+
+.Save:hover {
+  background-color: #d42c2c;
+}
+.Save:active {
+  top: 1px;
 }

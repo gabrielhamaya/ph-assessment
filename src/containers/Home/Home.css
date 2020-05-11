@@ -1,0 +1,9 @@
+.Home {
+  display: flex;
+  flex-direction: column;
+}
+
+.Time {
+  margin-top: 10px;
+  background-color: #000;
+}

@@ -4,18 +4,15 @@ import { firebaseConfig } from '../../modules/firebaseConfig';
 
 const initialState = {
   apiKey: firebaseConfig.apiKey,
-  searchResults: null,
+  searchData: null,
   error: null,
   videoId: null,
   query: null,
-  nextPage: null,
-  prevPage: null,
-  resultsPerPage: null,
   savedVideos: [],
 };
 
 const searchStart = (state) => {
-  return updateObject(state, { searchResults: null, error: null, query: null });
+  return updateObject(state, { searchData: null, error: null, query: null });
 };
 
 const searchFail = (state, action) => {
@@ -24,9 +21,8 @@ const searchFail = (state, action) => {
 
 const searchSuccess = (state, action) => {
   return updateObject(state, {
-    searchResults: action.videosResults,
+    searchData: action.searchData,
     query: action.query,
-    resultsPerPage: action.resultsPerPage,
   });
 };
 
