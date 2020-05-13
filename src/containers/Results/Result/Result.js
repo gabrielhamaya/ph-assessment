@@ -1,14 +1,19 @@
 import React from 'react';
 import './Result.css';
-import Card from '../../UI/Card';
+import Card from '../../../components/UI/Card';
+
+/* 
+  From the props we pass on <Results> we 
+*/
 
 const Result = (props) => {
-  let show = true;
+  /* We compare if the video was already saved and decide if we show the button or not */
+  let showSavedBtn = true;
   if (props.showSavedButton) {
     if (
       props.showSavedButton.some((vidDta) => vidDta.id.videoId === props.video)
     ) {
-      show = false;
+      showSavedBtn = false;
     }
   }
 
@@ -17,7 +22,7 @@ const Result = (props) => {
       <img alt="video thumbnail" src={props.thumbnail} />
       <span>{props.title}</span>
 
-      {show ? (
+      {showSavedBtn ? (
         <button
           className="Save"
           type="button"
@@ -27,6 +32,19 @@ const Result = (props) => {
           }}
         >
           Save
+        </button>
+      ) : null}
+
+      {props.showDeleteButton ? (
+        <button
+          className="Save"
+          type="button"
+          onClick={(e) => {
+            props.delete(props.videoData);
+            e.stopPropagation();
+          }}
+        >
+          Delete
         </button>
       ) : null}
     </Card>

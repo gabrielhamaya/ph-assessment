@@ -1,3 +1,5 @@
+/* eslint-disable no-restricted-syntax */
+/* eslint-disable guard-for-in */
 import axios from 'axios';
 import * as actionTypes from './actionTypes';
 
@@ -81,9 +83,78 @@ export const playVideo = (videoID) => {
   };
 };
 
-export const saveVideo = (video) => {
+export const saveVideoFail = (error) => {
   return {
-    type: actionTypes.SAVE_VIDEO,
+    type: actionTypes.SAVE_VIDEO_FAIL,
+    error,
+  };
+};
+
+export const saveVideoSucess = (video) => {
+  return {
+    type: actionTypes.SAVE_VIDEO_SUCCESS,
     video,
+  };
+};
+
+export const fetchSavedVideosSuccess = (SavedVideos) => {
+  return {
+    type: actionTypes.FETCH_SAVED_VIDEO_SUCCESS,
+    SavedVideos,
+  };
+};
+
+export const fetchSavedVideosFail = (error) => {
+  return {
+    type: actionTypes.FETCH_SAVED_VIDEO_FAIL,
+    error,
+  };
+};
+
+export const fetchSavedVideos = () => {
+  return (dispatch) => {
+    axios
+      .get('https://ph-assessment-backend.firebaseio.com/savedVideos.json')
+      .then((res) => {
+        const fetchedVideos = [];
+        // eslint-disable-next-line prefer-const
+        for (let key in res.data) {
+          fetchedVideos.push({
+            ...res.data[key],
+          });
+        }
+        dispatch(fetchSavedVideosSuccess(fetchedVideos));
+      })
+      .catch((err) => {
+        dispatch(fetchSavedVideosFail(err));
+      });
+  };
+};
+
+export const saveVideo = (video) => {
+  return (dispatch) => {
+    axios
+      .put(
+        `https://ph-assessment-backend.firebaseio.com/savedVideos/${video.id.videoId}.json`,
+        video
+      )
+      .then(() => {
+        dispatch(saveVideoSucess(video));
+      })
+      .catch((error) => {
+        dispatch(saveVideoFail(error));
+      });
+  };
+};
+
+export const deleteVideo = (video) => {
+  return (dispatch) => {
+    axios
+      .delete(
+        `https://ph-assessment-backend.firebaseio.com/savedVideos/${video.id.videoId}.json`
+      )
+      .then(() => {
+        dispatch(fetchSavedVideos());
+      });
   };
 };

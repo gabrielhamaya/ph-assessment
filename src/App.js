@@ -7,8 +7,10 @@ import Home from './containers/Home/Home';
 import * as actions from './store/actions';
 
 class App extends Component {
+  /* Check for any saved videos and if the user is singed in */
   componentDidMount() {
     this.props.onSignUp();
+    this.props.onLoadSavedVideos();
   }
 
   render() {
@@ -29,6 +31,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     onSignUp: () => dispatch(actions.authCheckState()),
+    onLoadSavedVideos: () => dispatch(actions.fetchSavedVideos()),
   };
 };
 

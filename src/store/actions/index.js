@@ -1,2 +1,9 @@
 export { googleSignIn, authCheckState } from './auth';
-export { seachVideo, playVideo, saveVideo, loadMore } from './search';
+export {
+  seachVideo,
+  playVideo,
+  saveVideo,
+  deleteVideo,
+  loadMore,
+  fetchSavedVideos,
+} from './search';

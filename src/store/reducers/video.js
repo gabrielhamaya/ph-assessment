@@ -41,9 +41,25 @@ const playVideo = (state, action) => {
   return updateObject(state, { videoId: action.videoID });
 };
 
-const saveVideo = (state, action) => {
+const saveVideoFail = (state, action) => {
+  return updateObject(state, { error: action.error });
+};
+
+const saveVideoSucess = (state, action) => {
   return updateObject(state, {
     savedVideos: state.savedVideos.concat(action.video),
+  });
+};
+
+const fetchSavedVideosFail = (state, action) => {
+  return updateObject(state, {
+    error: action.error,
+  });
+};
+
+const fetchSavedVideosSuccess = (state, action) => {
+  return updateObject(state, {
+    savedVideos: action.SavedVideos,
   });
 };
 
@@ -57,12 +73,18 @@ const reducer = (state = initialState, action) => {
       return searchSuccess(state, action);
     case actionTypes.PLAY_VIDEO:
       return playVideo(state, action);
-    case actionTypes.SAVE_VIDEO:
-      return saveVideo(state, action);
+    case actionTypes.SAVE_VIDEO_FAIL:
+      return saveVideoFail(state, action);
+    case actionTypes.SAVE_VIDEO_SUCCESS:
+      return saveVideoSucess(state, action);
     case actionTypes.LOAD_MORE_SUCCESS:
       return loadMoreSucess(state, action);
     case actionTypes.LOAD_MORE_FAIL:
       return loadMoreFail(state, action);
+    case actionTypes.FETCH_SAVED_VIDEO_FAIL:
+      return fetchSavedVideosFail(state, action);
+    case actionTypes.FETCH_SAVED_VIDEO_SUCCESS:
+      return fetchSavedVideosSuccess(state, action);
     default:
       return state;
   }

@@ -15,14 +15,19 @@ class Search extends Component {
     this.props.onSearch(this.props.apiKey, this.state.query);
   };
 
-  onChange = (event) => {
+  /* We build the query from this component and then same the query on the state so that we can load more videos with it */
+  queryBuilder = (event) => {
     this.setState({ query: event.target.value });
   };
 
   render() {
     return (
       <form onSubmit={this.searchHandler}>
-        <input type="text" placeholder="Search..." onChange={this.onChange} />
+        <input
+          type="text"
+          placeholder="Search..."
+          onChange={this.queryBuilder}
+        />
         <button className="Go" type="submit">
           Go!
         </button>
