@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../../store/actions/index';
+import './Search.css';
 
 class Search extends Component {
   constructor(props) {
@@ -12,19 +13,19 @@ class Search extends Component {
     event.preventDefault();
 
     this.props.onSearch(this.props.apiKey, this.state.query);
-    console.log(this.state.query);
   };
 
   onChange = (event) => {
     this.setState({ query: event.target.value });
-    console.log(this.state.query);
   };
 
   render() {
     return (
       <form onSubmit={this.searchHandler}>
         <input type="text" placeholder="Search..." onChange={this.onChange} />
-        <button type="submit">Go!</button>
+        <button className="Go" type="submit">
+          Go!
+        </button>
       </form>
     );
   }

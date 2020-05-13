@@ -3,7 +3,25 @@
   flex-direction: column;
 }
 
-.Time {
-  margin-top: 10px;
-  background-color: #000;
+.btn {
+  background-color: #e01b0d;
+  border-radius: 42px;
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;
+  font-family: Arial;
+  font-size: 17px;
+  padding: 14px 76px;
+  margin-top: 5%;
+  text-decoration: none;
+  text-align: center;
+  justify-content: center;
+}
+
+.btn:hover {
+  background-color: #d42c2c;
+}
+.btn:active {
+  position: relative;
+  top: 1px;
 }

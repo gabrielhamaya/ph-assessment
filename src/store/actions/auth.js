@@ -44,6 +44,8 @@ export const authCheckState = () => {
     firebase.auth().onIdTokenChanged((user) => {
       if (user) {
         dispatch(authSuccess(user));
+      } else {
+        dispatch(authFail(user));
       }
     });
   };

@@ -1,4 +1,4 @@
-.Auth {
+.Save {
   background-color: #e01b0d;
   border-radius: 42px;
   display: inline-block;
@@ -9,12 +9,14 @@
   padding: 14px 76px;
   margin-top: 5%;
   text-decoration: none;
+  text-align: center;
+  justify-content: center;
 }
 
-.Auth:hover {
+.Save:hover {
   background-color: #d42c2c;
 }
-.Auth:active {
+.Save:active {
   position: relative;
   top: 1px;
 }

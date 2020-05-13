@@ -1,5 +1,6 @@
 import * as actionTypes from '../actions/actionTypes';
 import updateObject from '../../modules/updateObject';
+import { mergeDeep } from '../../modules/deepMerge';
 import { firebaseConfig } from '../../modules/firebaseConfig';
 
 const initialState = {
@@ -26,6 +27,16 @@ const searchSuccess = (state, action) => {
   });
 };
 
+const loadMoreSucess = (state, action) => {
+  return updateObject(state, mergeDeep(state.searchData, action.moreVideos));
+};
+
+const loadMoreFail = (state, action) => {
+  return updateObject(state, {
+    error: action.error,
+  });
+};
+
 const playVideo = (state, action) => {
   return updateObject(state, { videoId: action.videoID });
 };
@@ -48,6 +59,10 @@ const reducer = (state = initialState, action) => {
       return playVideo(state, action);
     case actionTypes.SAVE_VIDEO:
       return saveVideo(state, action);
+    case actionTypes.LOAD_MORE_SUCCESS:
+      return loadMoreSucess(state, action);
+    case actionTypes.LOAD_MORE_FAIL:
+      return loadMoreFail(state, action);
     default:
       return state;
   }

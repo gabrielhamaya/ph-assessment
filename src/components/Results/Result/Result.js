@@ -1,21 +1,29 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './Result.css';
 import Card from '../../UI/Card';
 
 const Result = (props) => {
-  const [showResults, setShowResults] = React.useState(true);
+  let show = true;
+  if (props.showSavedButton) {
+    if (
+      props.showSavedButton.some((vidDta) => vidDta.id.videoId === props.video)
+    ) {
+      show = false;
+    }
+  }
 
   return (
     <Card id={props.video} playVideo={props.clicked}>
       <img alt="video thumbnail" src={props.thumbnail} />
       <span>{props.title}</span>
-      {props.showSavedButton && showResults ? (
+
+      {show ? (
         <button
           className="Save"
           type="button"
-          onClick={() => {
+          onClick={(e) => {
             props.save(props.videoData);
-            setShowResults(false);
+            e.stopPropagation();
           }}
         >
           Save

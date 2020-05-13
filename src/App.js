@@ -14,7 +14,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        {!this.props.isAuthenticated ? <Auth /> : <Home />}
+        {this.props.isAuthenticated ? <Home /> : <Auth />}
       </div>
     );
   }

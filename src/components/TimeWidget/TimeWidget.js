@@ -1,6 +1,7 @@
 import moment from 'moment';
 
 import React, { Component } from 'react';
+import './TimeWidget.css';
 
 // import * as actions from '../../store/actions/index';
 
@@ -12,7 +13,7 @@ class TimeWidget extends Component {
 
   componentDidMount() {
     setInterval(() => {
-      this.setState({ time: moment().format() });
+      this.setState({ time: moment().format('dddd, MMMM Do YYYY, h:mm:ss a') });
     }, 1000);
   }
 
@@ -21,7 +22,7 @@ class TimeWidget extends Component {
   }
 
   render() {
-    return <div>{this.state.time}</div>;
+    return <div className="Time">{this.state.time}</div>;
   }
 }
 

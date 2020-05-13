@@ -11,3 +11,6 @@ export const CLOCK_CURRENT = 'CLOCK_CURRENT';
 
 export const PLAY_VIDEO = 'PLAY_VIDEO';
 export const SAVE_VIDEO = 'SAVE_VIDEO';
+
+export const LOAD_MORE_SUCCESS = 'LOAD_MORE_SUCCESS';
+export const LOAD_MORE_FAIL = 'LOAD_MORE_FAIL';
